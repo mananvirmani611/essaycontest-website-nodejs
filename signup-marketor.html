@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup - Create Referral Link</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <style media="screen">
+        #logo-image{
+          width:10%;
+        }
+        @media screen and (max-width: 992px) {
+              #logo-image{
+              width:20%;
+            }
+          }
+
+    </style>
+  </head>
+  <body>
+
+
+    <div class="shadow" style="text-align:center; padding:1% 0;  position:relative; z-index:100;">
+          <img src="/logo.png" alt="" id="logo-image">
+    </div>
+
+
+
+
+
+
+<div class="" style="background-image: url('https://freevector-images.s3.amazonaws.com/uploads/vector/preview/40490/vecteezy_background-white_fj1220.jpg');  background-size: 100% 100%;">
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6" style="padding:3% 0; margin:0 3%;">
+              <img src="/refer.jpg" alt="" style="width:100%;">
+        </div>
+          <div class="col-lg-4 shadow" style="background-color:white;border:1px solid; margin-bottom:3%; margin-top:4%; margin-right: 5%; margin-left:5%;">
+
+            <form class="" action="/referral/signup" method="post" style="padding:20% 5% 2% 5%; margin:10px; text-align:center;">
+              <h4 style="margin-bottom:30px;">Generate your referral link and EARN!!</h4>
+                <div class="form-group">
+                  <input type="text" name="name" value="" placeholder="Your Name (*)" style="width:100%;">
+
+                </div>
+                <div class="form-group">
+
+                  <input type="text" name="email" value="" placeholder="Your Email (*)" style="width:100%;">
+                </div>
+                <div class="form-group">
+
+                  <input type="text" name="routeKey" value="" placeholder="Your unique key" style="width:100%;">
+                </div>
+                <div class="form-group">
+                  <button type="submit" name="button" class="btn btn-success btn-md">Generate Referral Link</button>
+
+                </div>
+            </form>
+
+            <form class="" action="/login/marketor" method="get" style="text-align:center; margin-bottom:20%;">
+              Already generated link : <button type="submit" name="button" class="btn btn-success btn-sm">Check Balance</button>
+            </form>
+          </div>
+      </div>
+
+    </div>
+    </div>
+  </body>
+</html>

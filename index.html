@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Paytm-Nodejs</title>
+    <style media="screen">
+      body, html{
+        overflow-x:hidden;
+        overflow-y:hidden;
+        width:100%;
+      }
+    </style>
+
+  </head>
+  <body style="background-color:#f5f3ef">
+
+    <div class="row my-5">
+      <div class="col-lg-6 col-md-8 offset-lg-3 offset-md-2">
+        <div class="card">
+          <div class="card-body">
+            <!-- <form class="" action="/orders" method="post"> -->
+
+                 <div class="row">
+                  <div class="col-lg-6">
+                  <div class="form-group">
+                    <label for="">Name:(<span style="color:red;">*</span>) </label>
+                    <input id="name" class="form-control" type="text" name="name" value="">
+                  </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="">Email:(<span style="color:red;">*</span>) </label>
+                      <input id="email" class="form-control" type="text" name="email" value="">
+                    </div>
+                  </div>
+                </div>
+
+                 <div class="row">
+                  <div class="col-lg-6">
+                  <div class="form-group">
+                    <label for="">Phone:(<span style="color:red;">*</span>) </label>
+                    <input class="form-control" id="phone" type="text" name="phone" value="">
+                  </div>
+                </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="">Referral Code(if any): </label>
+                      <input class="form-control" id="referral" type="text" name="referral" value="">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-6">
+                  <div class="form-group">
+                    <label for="">State: </label>
+                    <input class="form-control" id="state" type="text" name="state" value="">
+                  </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="">Country:(<span style="color:red;">*</span>) </label>
+                      <input class="form-control" id="country" type="text" name="country" value="">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- <div class="form-group">
+                <label for="">Amount: </label>
+                <input class="form-control" type="text" name="amount" value="">
+              </div> -->
+              <div class="form-group">
+                <button class="btn form-control btn-primary" id="rzp-button1">Pay Now and Submit essay</button>
+              </div>
+            <!-- </form> -->
+            <div class="row" style="text-align:center;">
+                <div class="col-lg-4 offset-lg-4">
+                  <form class="" action="/referral" method="get" style="width:100%;">
+                      <button type="submit" name="button" class="btn form-control btn-primary">Refer to a friend</button>
+                  </form>
+                </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+
+      $('#rzp-button1').on("click", function(){
+        // const qs = require('qs');
+
+//
+        const dataArray = {
+          name : $("#name").val(),
+          email : $("#email").val(),
+          phone : $("#phone").val(),
+          state : $("#state").val(),
+          country : $("#country").val()
+        }
+
+        // const data = dataArray;
+        // const options = {
+        //   method: 'POST',
+        //   data: qs.stringify(data),
+        //   url : "/orders",
+        // };
+
+
+const params = new URLSearchParams();
+params.append("name", $("#name").val() );
+params.append("email", $("#email").val() );
+params.append("phone", $("#phone").val() );
+params.append("state", $("#state").val() );
+params.append("country", $("#country").val() );
+
+axios.post('/orders', params)
+        .then((info)=>{
+    //
+          // console.log(info);
+          var options = {
+              "name": "Acme Corp",
+              "description": "Test Transaction",
+              "order_id": info.data.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+              "callback_url": "https://monomousumicontest.com/payment-complete",
+              "prefill": {
+                      "name": "Gaurav Kumar",
+                      "email": "gaurav.kumar@example.com",
+                      "contact": "9999999999"
+                  },
+              "notes": {
+                  "address": "Razorpay Corporate Office"
+              },
+              "theme": {
+                  "color": "#3399cc"
+              }
+          };
+          var rzp1 = new Razorpay(options);
+          // document.getElementById('rzp-button1').onclick = function(e){
+            // console.log(e);
+              rzp1.open();
+              // e.preventDefault();
+          // };
+      });
+    });
+
+    </script>
+  </body>
+</html>

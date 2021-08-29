@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Grading</title>
+  <style media="screen">
+      #logo-image{
+        width:10%;
+      }
+      @media screen and (max-width: 992px) {
+            #logo-image{
+            width:20%;
+          }
+        }
+
+  </style>
+</head>
+
+<body>
+
+
+  <div class="shadow" style="text-align:center; padding:1% 0;  position:relative; z-index:100;">
+        <img src="/logo.png" alt="" id="logo-image">
+  </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding:1% 0;">
+    <div class="container-fluid">
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="https://monomousumicontest.com/admin/dashboard/">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="">Grading Section</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://monomousumicontest.com/announce/result/">Announce result</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+
+
+
+  <div class="" style="padding-top:5%; padding-bottom: 5%; background-image: url('https://freevector-images.s3.amazonaws.com/uploads/vector/preview/40490/vecteezy_background-white_fj1220.jpg');  background-size: 100% 100%;">
+    <div class="container" style="background-color: white; margin-top:0; padding:2%;">
+      <table class="table border">
+        <thead>
+          <tr>
+            <th scope="col">No.</th>
+            <th scope="col">Name</th>
+            <th scope="col">Unq.Key</th>
+            <th scope="col">Email</th>
+            <th scope="col">Categeory</th>
+            <th scope="col">Essay</th>
+            <th scope="col">Grading</th>
+            <th scope="col">Gr-1</th>
+            <th scope="col">Gr-2</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var i = 0; i<dataArray.length; i++){ %>
+            <tr>
+              <th scope="row"><%- i+1 %></th>
+              <td ><%= dataArray[i].fullName %></td>
+              <td><%= dataArray[i].key %></td>
+              <td><%= dataArray[i].email %></td>
+              <td><%= dataArray[i].state %></td>
+              <td> <form class="" action="/essay/reading/<%=dataArray[i].key%>" method="get">
+                        <input type="image" src="https://image.flaticon.com/icons/png/512/65/65000.png" name="submit" width="25" height="25" alt="submit"/>
+              </form> </td>
+              <td width="10%;">
+
+              <% if(dataArray[i].grade == 0) { %>
+              <form class="" action="/admin/grading/<%=dataArray[i].key%>/asdfghjkl" method="post"><input type="number" name="grade" placeholder="Grade" value="" style="width:70%;"><br><button type="submit" name="button"><i class="fa fa-check"></i></button>
+              </form>
+              <% } else  {%>
+              <%= dataArray[i].grade %>
+              <% } %>
+               </td>
+               <td width="10%;"><%= dataArray[i].grade1 %></td>
+               <td width="10%;"><%= dataArray[i].grade2 %></td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+
+</html>

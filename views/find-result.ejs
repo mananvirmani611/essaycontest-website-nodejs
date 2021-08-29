@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  </head>
+  <style media="screen">
+      #logo-image{
+        width:10%;
+      }
+      @media screen and (max-width: 992px) {
+            #logo-image{
+            width:20%;
+          }
+        }
+
+        body, html{
+          height:100%;
+        }
+
+
+
+
+
+
+  </style>
+  <body>
+
+    <div class="shadow" style="text-align:center; padding:1% 0;  position:relative; z-index:100;">
+          <img src="/logo.png" alt="" id="logo-image">
+    </div>
+
+
+
+      <div class="" style="padding: 5% 0!important; margin-bottom:4%; height:100%!important;background-image: url('https://freevector-images.s3.amazonaws.com/uploads/vector/preview/40490/vecteezy_background-white_fj1220.jpg');  background-size: 100% 100%;">
+        <div class="shadow"  style="background-color:white; margin:0 8% 5% 8%; padding:6% 0; text-align:center;">
+          <div class="container" style="padding:0 6%;" >
+
+                <form class="" action="/findresult/student" method="post" style="text-align:center;">
+                  <h1 style="margin:3% 0 ;">Enter credentials</h1>
+                        <div class="row" style="text-align:center;">
+                            <div class="col-lg-5 col-md-6" style="margin:2% 0;">
+                                  <input required type="text" name="email" value="" placeholder="EMAIL" style="width:100%; padding:1%;" required>
+                            </div>
+                            <div class="col-lg-5 col-md-6" style="margin:2% 0;">
+                                  <input type="password" name="password" value="" placeholder="PASSWORD" style="width:100%; padding:1%;" required>
+                            </div>
+                            <div class="col-lg-2 col-md-4" style="margin:2% 0; text-align:center!important;">
+                              <button type="submit" class="btn btn-md btn-dark" name="button" style="width:100%; background-color:#db0808; border:#db0808;">Check Result</button>
+
+                            </div>
+
+                        </div>
+                </form>
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+          <% if(data != null) { %>
+            <div class="" style="margin:4% 0!important; width:100%; text-align:center;">
+
+              <h4 style="margin:20px 0;" id="name"><%= data[0].fullName %></h4>
+              <table class="table border" style="width:100%;"  >
+                <thead>
+                  <tr>
+                    <th scope="col">Unique Key</th>
+                    <th scope="col">Overall Grade</th>
+                    <th scope="col">Remarks</th>
+                    <th scope="col">Certificate</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><%= data[0].key %></td>
+                    <td><%= overAllGrade %></td>
+                    <td><%= data[0].remarks %></td>
+                    <td> <form class="" action="/download/certificate/<%=data[0].key%>" method="post">
+                          <button type="submit" name="button" id="submitBtn">Download</button>
+                    </form> </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <% } else { %>
+              <div class="container" style="margin:4% 0; width:100%; text-align:center;">
+
+                <table class="table border" style="width:100%;" >
+                  <thead>
+                    <tr>
+                      <th scope="col" id="routeKey">Unique Key</th>
+                      <th scope="col">Overall Grade</th>
+                      <th scope="col">Remarks</th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+              <% } %>
+        </div>
+
+      </div>
+      <script src="https://unpkg.com/pdf-lib@1.4.0"></script>
+      <script src="/FileSaver.js"></script>
+      <script src="https://unpkg.com/@pdf-lib/fontkit@0.0.4"></script>
+      <script src="/find-result.js">
+
+      </script>
+  </body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Personal Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="/dashboard-css.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap" rel="stylesheet">
+    <style media="screen">
+
+      body, html{
+        overflow-x:hidden;
+        width:100%;
+          overflow-x: hidden;
+          font-family: 'Dosis', sans-serif!important;
+          font-weight: 700;
+      }
+
+
+      #logo-image{
+        width:10%;
+      }
+      @media screen and (max-width: 992px) {
+            #logo-image{
+            width:20%;
+          }
+        }
+
+        button{
+          background-color: #db0808!important;
+          border:#db0808!important;
+        }
+
+
+
+
+        body{
+  background-color: black;
+}
+
+#blinkText {
+  font-size: 42px;
+}
+
+#blink {
+  -webkit-animation-name: blinker;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-duration: 2s;
+}
+
+@-webkit-keyframes blinker {
+    0% { color: #5B84B1;
+          text-shadow: #5B84B1 0px 0px 20px;
+          font-size: 500%}
+    50% { color: #FC766A;
+           text-shadow: #FC766A 0px 0px 20px;
+            font-size: 500%;}
+
+    100% { color: #5B84B1;
+           text-shadow: #5B84B1 0px 0px 20px;
+            font-size: 500%;}
+}
+
+h1 {
+   -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-name: woosher;
+     color: white;
+}
+
+@-webkit-keyframes  woosher {
+  0% {
+    margin-left: 100%;
+    width: 300%;
+  }
+  100% {
+    margin-left: 50%;
+    width: 100%;
+  }
+}
+
+.hidden{
+  display: none;
+}
+
+
+    </style>
+
+  </head>
+
+
+  <body style="background-color:#f5f3ef">
+    <div class="shadow" style="text-align:center; padding:1% 0;  position:relative; z-index:100;">
+          <img src="/logo.png" alt="" id="logo-image">
+    </div>
+
+    <div class="" style="text-align:center; background-color:white; padding-top:2%; margin-bottom:0;">
+      <p style="font-size:76px; font-weight:bold; margin-bottom:0; padding-bottom:2%;">Your personal dashboard</p>
+    </div>
+    <div style="padding-top:0; margin :0; background-image: url('https://previews.123rf.com/images/dimiraira/dimiraira1608/dimiraira160800082/61480734-angels-on-white-background-seamless-pattern-of-the-angels-of-different-colors-joyful-pattern-of-brig.jpg'); background-size: 100% 100%; margin-top:0;">
+      <div class="row" style="margin : 0; padding:2% 4%;">
+        <div class="col-md-4">
+          <div class="card" style="margin : 0;padding:6%;">
+              <div class="card-body shadow" style="margin:0;">
+
+                    <img src="/dashboard2.jpg" alt="" width="100%;" style="margin-bottom:5%;">
+                    <h5>Your unique Key :</h5>
+                    <h2> <strong><%= routeKey %></strong> </h2>
+                    <h5>Your password : </h5>
+                    <h2> <strong><%= password %></strong> </h2>
+                    <br>
+                    <h5 style="color:#db0808!important;">You can login later using this unique key and password</h5>
+
+                    <!-- <div class="row" style="text-align:center;">
+                        <div class="col-md-12">
+                          <form class="" action="/referral/signup" method="get" style="width:100%; margin:1% 0;">
+                              <button type="submit" name="button" class="btn form-control btn-primary">Refer to a friend - Signup</button>
+                          </form>
+                        </div>
+                        <div class="col-md-12">
+                          <form class="" action="/login/marketor" method="get" style="width:100%; margin:1% 0;">
+                              <button type="submit" name="button" class="btn form-control btn-primary">Already referred - Get current Balance</button>
+                          </form>
+                          </div>
+                        </div> -->
+
+
+
+              </div>
+          </div>
+        </div>
+
+        <% if(paymentMade == true){ %>
+        <div class="col-md-8" style="">
+
+          <div class="card">
+            <div class="card-body shadow">
+              <div class="blink" id="blink">
+              <h3 style="margin-bottom:3%; font-size:56px;" id="blinkText">
+                  <a href="https://monomousumicontest.com/findresult/student" style="text-decoration:none;">Result has been declared</a>
+              </h3>
+              </div>
+                <!-- <p style="font-size:40px;">Your entry has been submitted.<br>
+                We will inform you when the result gets declared.</p> -->
+
+            </div>
+          </div>
+        </div>
+        <% } else { %>
+        <div class="col-md-8" style="">
+          <div class="card">
+            <div class="card-body shadow">
+              <!-- <form class="" action="/orders" method="post"> -->
+                    <div class="blink" id="blink">
+      <h3 style="margin-bottom:3%;" id="blinkText">Submit your essay here</h3>
+                    </div>
+                   <div class="row">
+                    <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="">Name:(<span style="color:red;">*</span>) </label>
+                      <input id="name" class="form-control" type="text" name="name" value="">
+                    </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="">Email:(<span style="color:red;">*</span>) </label>
+                        <input id="email" class="form-control" type="text" name="email" value="">
+                      </div>
+                    </div>
+                  </div>
+
+                   <div class="row">
+                    <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="">Phone:(<span style="color:red;">*</span>) </label>
+                      <input class="form-control" id="phone" type="text" name="phone" value="">
+                    </div>
+                  </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="">Country:(<span style="color:red;">*</span>) </label>
+                        <input class="form-control" id="country" type="text" name="country" value="">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="">State: </label>
+                      <input class="form-control" id="state" type="text" name="state" value="">
+                    </div>
+                    </div>
+                    <div class="col-md-6">
+
+                    </div>
+                  </div>
+                  <label for="" style="font-size:40px;">Essay :</label><br>
+                  <textarea id="essay" name="essay" rows="8" cols="80" style="width:100%; margin-bottom:20px;"></textarea>
+
+                  <!-- <div class="form-group">
+                  <label for="">Amount: </label>
+                  <input class="form-control" type="text" name="amount" value="">
+                </div> -->
+                <div class="form-group">
+                  <button class="btn form-control btn-primary" id="rzp-button1">Pay Now and Submit essay</button>
+                </div>
+              <!-- </form> -->
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <% } %>
+    </div>
+
+
+
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+
+      $('#rzp-button1').on("click", function(){
+        // const qs = require('qs');
+
+//
+        const dataArray = {
+          name : $("#name").val(),
+          email : $("#email").val(),
+          phone : $("#phone").val(),
+          state : $("#state").val(),
+          country : $("#country").val()
+        }
+
+        // const data = dataArray;
+        // const options = {
+        //   method: 'POST',
+        //   data: qs.stringify(data),
+        //   url : "/orders",
+        // };
+
+
+const params = new URLSearchParams();
+params.append("name", $("#name").val() );
+params.append("email", $("#email").val() );
+params.append("phone", $("#phone").val() );
+params.append("state", $("#state").val() );
+params.append("country", $("#country").val());
+params.append("essay", $("#essay").val());
+
+axios.post('/<%-routeKey%>/orders', params)
+        .then((info)=>{
+
+          let routeKey = '<%=routeKey%>';
+          // console.log(info);
+          var options = {
+            "name": "Monomousumi",
+            "description": "Essay Submission Payment",
+            "order_id": info.data.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "callback_url": "https://monomousumicontest.com/payment-complete/" + routeKey,
+
+            "notes": {
+                "address": "Razorpay Corporate Office"
+            },
+              "theme": {
+                  "color": "#3399cc"
+              }
+          };
+          var rzp1 = new Razorpay(options);
+          // document.getElementById('rzp-button1').onclick = function(e){
+            // console.log(e);
+              rzp1.open();
+              // e.preventDefault();
+          // };
+      });
+    });
+
+    </script>
+  </body>
+</html>

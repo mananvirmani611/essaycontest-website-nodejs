@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certificate Generator using javascript</title>
+  <link rel="stylesheet" href="/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="favicon.png"/>
+</head>
+<body>
+  <header>
+    <div class="heading_text">
+      <h1>Create Certificates for Free in Minutes</h1>
+      <h2>Make unique certificates in minutes. No design skills needed.</h2>
+    </div>
+  </header>
+  <main>
+    <div>
+
+    </div>
+  </main>
+  <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+  <script src="https://unpkg.com/@pdf-lib/fontkit@0.0.4"></script>
+  <script src="/filesaver.js"></script>
+  <script src="/index.js"></script>
+  <script type="text/javascript">
+  const userName = '<%-name%>';
+  console.log(userName);
+  const submitBtn = document.getElementById("submitBtn");
+  const { PDFDocument, rgb, degrees } = PDFLib;
+const val = userName;
+const remarks  = '<%-remarks%>';
+
+  // submitBtn.addEventListener("click", () => {
+  //
+  //     if (val.trim() !== "") {
+  //
+  //       } else {
+  //         userName.reportValidity();
+  //       }
+  // });
+  const generatePDF = async (name) => {
+      const existingPdfBytes = await fetch("/Certificate.pdf").then((res) =>
+        res.arrayBuffer()
+      );
+
+      // Load a PDFDocument from the existing PDF bytes
+      const pdfDoc = await PDFDocument.load(existingPdfBytes);
+      pdfDoc.registerFontkit(fontkit);
+
+
+    //get font
+    const fontBytes = await fetch("/Sanchez-Regular.ttf").then((res) =>
+    res.arrayBuffer()
+  );
+    // Embed our custom font in the document
+    const SanChezFont  = await pdfDoc.embedFont(fontBytes);
+     // Get the first page of the document
+     const pages = pdfDoc.getPages();
+     const firstPage = pages[0];
+
+     // Draw a string of text diagonally across the first page
+     firstPage.drawText(name.toUpperCase(), {
+       x: 300,
+       y: 290,
+       size: 20,
+       font: SanChezFont ,
+       color: rgb(0.2, 0.84, 0.67),
+     });
+     firstPage.drawText(remarks, {
+       x: 300,
+       y: 180,
+       size: 20,
+       font: SanChezFont ,
+       color: rgb(0.2, 0.84, 0.67),
+     });
+
+    // Serialize the PDFDocument to bytes (a Uint8Array)
+    const pdfDataUri = await pdfDoc.saveAsBase64({ dataUri: true });
+    saveAs(pdfDataUri,"newcertificate.pdf")
+  };
+generatePDF(val);
+  </script>
+
+
+</body>
+</html>
